@@ -31,6 +31,8 @@ const appPackageJson = require(paths.appPackageJson);
 
 const tools = require('../tools');
 
+const alias = require('./alias');
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -272,17 +274,19 @@ module.exports = function(webpackEnv) {
       extensions: paths.moduleFileExtensions
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes('ts')),
-      alias: {
-        // Support React Native Web
-        // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-        'react-native': 'react-native-web',
-        // Allows for better profiling with ReactDevTools
-        ...(isEnvProductionProfile && {
-          'react-dom$': 'react-dom/profiling',
-          'scheduler/tracing': 'scheduler/tracing-profiling',
-        }),
-        ...(modules.webpackAliases || {}),
-      },
+      // alias: {
+      //   // Support React Native Web
+      //   // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+      //   'react-native': 'react-native-web',
+      //   // Allows for better profiling with ReactDevTools
+      //   ...(isEnvProductionProfile && {
+      //     'react-dom$': 'react-dom/profiling',
+      //     'scheduler/tracing': 'scheduler/tracing-profiling',
+      //   }),
+      //   ...(modules.webpackAliases || {}),
+      //   '@': resolve('src'),
+      // },
+      alias: alias.resolve.alias,
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
