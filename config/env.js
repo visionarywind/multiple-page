@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const serverConfig = require('../mock.json').mock || {};
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -13,6 +14,8 @@ if (!NODE_ENV) {
     'The NODE_ENV environment variable is required but was not specified.'
   );
 }
+
+console.log('init');
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 const dotenvFiles = [
@@ -69,6 +72,8 @@ function getClientEnvironment(publicUrl) {
         return env;
       },
       {
+        IS_MOCK_SERVER: serverConfig.isMock || false,
+        MOCK_SERVER_URL: serverConfig.mockServerUrl,
         // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
         NODE_ENV: process.env.NODE_ENV || 'development',

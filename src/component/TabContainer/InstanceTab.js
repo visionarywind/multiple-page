@@ -1,3 +1,4 @@
+import { URL_PREFIX } from '@/mock';
 import { Button, Descriptions, Tabs } from 'antd';
 import React from 'react';
 import './InstanceTab.css';
@@ -5,6 +6,13 @@ import './InstanceTab.css';
 const { TabPane } = Tabs;
 
 class InstanceTab extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state.instanceInfo = this.props.instanceInfo;
+
+    console.log("URL_PREFIX", URL_PREFIX);
+  }
+
   state = {
     show: false,
     instanceInfo: {
@@ -98,6 +106,29 @@ class InstanceTab extends React.Component {
       </div>
     )
   }
+}
+
+InstanceTab.defaultProps = {
+  instanceInfo: {
+    id: undefined,
+    name: undefined,
+    user: undefined,
+    status: undefined,
+    flavor: undefined,
+    mode: undefined,
+    vpcId: undefined,
+    subnet: undefined,
+    subnetIp: undefined,
+    desc: undefined,
+    chargeMode: undefined,
+    availableZone: undefined,
+  },
+  nodeInfo: {
+
+  },
+  gwConnection: {
+
+  },
 }
 
 export default InstanceTab;
