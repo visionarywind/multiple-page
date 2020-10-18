@@ -1,7 +1,9 @@
 import { URL_PREFIX } from '@/mock';
 import { Button, Descriptions, Tabs } from 'antd';
 import React from 'react';
+import BasicInfo from './BasicInfo';
 import './InstanceTab.css';
+import NodeInfo from './NodeInfo';
 
 const { TabPane } = Tabs;
 
@@ -15,20 +17,6 @@ class InstanceTab extends React.Component {
 
   state = {
     show: false,
-    instanceInfo: {
-      id: undefined,
-      name: undefined,
-      user: undefined,
-      status: undefined,
-      flavor: undefined,
-      mode: undefined,
-      vpcId: undefined,
-      subnet: undefined,
-      subnetIp: undefined,
-      desc: undefined,
-      chargeMode: undefined,
-      availableZone: undefined,
-    },
     nodeInfo: {
 
     },
@@ -41,21 +29,6 @@ class InstanceTab extends React.Component {
     this.setState({
       show: !this.state.show
     });
-  }
-
-  renderBasicInfo() {
-    const title = 'id:' + this.state.instanceInfo.id + ' - 名称： ' + this.state.instanceInfo.name;
-    return (
-      <Descriptions title={title}>
-        <Descriptions.Item label="user">Zhou Maomao</Descriptions.Item>
-        <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
-        <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
-        <Descriptions.Item label="Remark">empty</Descriptions.Item>
-        <Descriptions.Item label="Address">
-          No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-        </Descriptions.Item>
-      </Descriptions>
-    );
   }
 
   renderNodeInfo() {
@@ -93,10 +66,10 @@ class InstanceTab extends React.Component {
         <div className='floating'>
           {this.state.show && <Tabs type="card">
             <TabPane tab='基本信息' key="1">
-              {this.renderBasicInfo()}
+              <BasicInfo instanceInfo={this.props.instanceInfo} />
             </TabPane>
             <TabPane tab="结点信息" key="2">
-              {this.renderNodeInfo()}
+              <NodeInfo />
             </TabPane>
             <TabPane tab="网关链接" key="3">
               {this.renderGwConnection()}
@@ -110,18 +83,18 @@ class InstanceTab extends React.Component {
 
 InstanceTab.defaultProps = {
   instanceInfo: {
-    id: undefined,
-    name: undefined,
-    user: undefined,
-    status: undefined,
-    flavor: undefined,
-    mode: undefined,
-    vpcId: undefined,
-    subnet: undefined,
-    subnetIp: undefined,
-    desc: undefined,
-    chargeMode: undefined,
-    availableZone: undefined,
+    id: 1,
+    name: "l2cg",
+    user: "user",
+    status: "running",
+    flavor: "high",
+    mode: "ha",
+    vpcId: "123456",
+    subnet: "192.168.0.0/24",
+    subnetIp: "192.168.0.2",
+    desc: "第一个实例",
+    chargeMode: "预付费",
+    availableZone: "可用区1",
   },
   nodeInfo: {
 
