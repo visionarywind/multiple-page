@@ -19,7 +19,7 @@ class InstanceTab extends React.Component {
   }
 
   state = {
-    show: false,
+    show: true,
     instanceInfo: {},
     nodeInfo: [],
     connection: [],
@@ -69,32 +69,48 @@ InstanceTab.defaultProps = {
     chargeMode: '预付费',
     availableZone: '可用区1',
   },
-  nodeInfo: [
-    {
-      role: 'master',
-      hrpRole: 'master',
-      status: 'running',
-      ecsId: 'masterEcsId',
-      flavor: '高性能',
-      tunnelIp: '192.168.0.2',
-      downlinkIp: '192.168.1.2',
-      uplinkIp: '10.18.1.2',
-      createTime: '27/08/2020',
-      updateTime: '27/09/2020',
+  nodeInfo: {
+    config: {
+      role: { name: "角色", editable: false },
+      hrpRole: { name: "当前角色", editable: false },
+      status: { name: "当前状态", editable: true },
+      ecsId: { name: "ecsId", editable: false },
+      flavor: { name: "规格", editable: false },
+      tunnelIp: { name: "隧道IP", editable: false },
+      downlinkIp: { name: "下联面IP", editable: false },
+      uplinkIp: { name: "上联面IP", editable: false },
+      createTime: { name: "创建时间", editable: false },
+      updateTime: { name: "更新时间", editable: false },
+
+      order: ['role', 'hrpRole', 'status', 'ecsId', 'flavor', 'tunnelIp', 'downlinkIp', 'uplinkIp', 'createTime', 'updateTime'],
     },
-    {
-      role: 'slave',
-      hrpRole: 'slave',
-      status: 'running',
-      ecsId: 'slaveEcsId',
-      flavor: '高性能',
-      tunnelIp: '192.168.0.3',
-      downlinkIp: '192.168.1.3',
-      uplinkIp: '10.18.1.23',
-      createTime: '27/08/2020',
-      updateTime: '27/09/2020',
-    },
-  ],
+    data: [
+      {
+        role: 'master',
+        hrpRole: 'master',
+        status: 'running',
+        ecsId: 'masterEcsId',
+        flavor: '高性能',
+        tunnelIp: '192.168.0.2',
+        downlinkIp: '192.168.1.2',
+        uplinkIp: '10.18.1.2',
+        createTime: '27/08/2020',
+        updateTime: '27/09/2020',
+      },
+      {
+        role: 'slave',
+        hrpRole: 'slave',
+        status: 'running',
+        ecsId: 'slaveEcsId',
+        flavor: '高性能',
+        tunnelIp: '192.168.0.3',
+        downlinkIp: '192.168.1.3',
+        uplinkIp: '10.18.1.23',
+        createTime: '27/08/2020',
+        updateTime: '27/09/2020',
+      },
+    ]
+  },
   connection: [
     {
       id: 'connect1',
