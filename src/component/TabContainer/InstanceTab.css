@@ -1,15 +1,23 @@
 @import '~antd/dist/antd.css';
 
 .wrapper {
-  width: 500px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  width: 800px;
   margin: 10px auto;
   font-size: 14px;
   background-color: #fff;
-  border: 1px solid #f1f1f1;
+  border: 1px solid black;
   padding: 20px;
 }
 
 .floating {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+
   z-index:99
 }
 

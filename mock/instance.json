@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "第一个实例",
+    "user": "l2cg",
+    "status": "running",
+    "flavor": "高性能",
+    "mode": "主备",
+    "vpcId": "vpc1",
+    "subnet": "192.168.0.0/24",
+    "subnetIp": "192.168.0.2",
+    "desc": "第一个实例",
+    "chargeMode": "预付费",
+    "availableZone": "可用区1"
+  }
+]

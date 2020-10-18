@@ -1,4 +1,4 @@
-import { Button, Tabs } from 'antd';
+import { Button, Descriptions, Tabs } from 'antd';
 import React from 'react';
 import './InstanceTab.css';
 
@@ -6,7 +6,27 @@ const { TabPane } = Tabs;
 
 class InstanceTab extends React.Component {
   state = {
-    show: false
+    show: false,
+    instanceInfo: {
+      id: undefined,
+      name: undefined,
+      user: undefined,
+      status: undefined,
+      flavor: undefined,
+      mode: undefined,
+      vpcId: undefined,
+      subnet: undefined,
+      subnetIp: undefined,
+      desc: undefined,
+      chargeMode: undefined,
+      availableZone: undefined,
+    },
+    nodeInfo: {
+
+    },
+    gwConnection: {
+
+    },
   }
 
   handleClick = () => {
@@ -15,26 +35,63 @@ class InstanceTab extends React.Component {
     });
   }
 
+  renderBasicInfo() {
+    const title = 'id:' + this.state.instanceInfo.id + ' - 名称： ' + this.state.instanceInfo.name;
+    return (
+      <Descriptions title={title}>
+        <Descriptions.Item label="user">Zhou Maomao</Descriptions.Item>
+        <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
+        <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
+        <Descriptions.Item label="Remark">empty</Descriptions.Item>
+        <Descriptions.Item label="Address">
+          No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+        </Descriptions.Item>
+      </Descriptions>
+    );
+  }
+
+  renderNodeInfo() {
+    return (
+      <Descriptions title="User Info">
+        <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
+        <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
+        <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
+        <Descriptions.Item label="Remark">empty</Descriptions.Item>
+        <Descriptions.Item label="Address">
+          No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+        </Descriptions.Item>
+      </Descriptions>
+    );
+  }
+
+  renderGwConnection() {
+    return (
+      <Descriptions title="User Info">
+        <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
+        <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
+        <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
+        <Descriptions.Item label="Remark">empty</Descriptions.Item>
+        <Descriptions.Item label="Address">
+          No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+        </Descriptions.Item>
+      </Descriptions>
+    );
+  }
+
   render() {
     return (
       <div className='wrapper'>
-        <Button onClick={this.handleClick}>点我</Button>
+        <Button hidden={this.state.show} onClick={this.handleClick}>点我点我点我点我点我点我点我</Button>
         <div className='floating'>
           {this.state.show && <Tabs type="card">
-            <TabPane tab="Tab Title 1" key="1">
-              <p>Content of Tab Pane 1</p>
-              <p>Content of Tab Pane 1</p>
-              <p>Content of Tab Pane 1</p>
+            <TabPane tab='基本信息' key="1">
+              {this.renderBasicInfo()}
             </TabPane>
-            <TabPane tab="Tab Title 2" key="2">
-              <p>Content of Tab Pane 2</p>
-              <p>Content of Tab Pane 2</p>
-              <p>Content of Tab Pane 2</p>
+            <TabPane tab="结点信息" key="2">
+              {this.renderNodeInfo()}
             </TabPane>
-            <TabPane tab="Tab Title 3" key="3">
-              <p>Content of Tab Pane 3</p>
-              <p>Content of Tab Pane 3</p>
-              <p>Content of Tab Pane 3</p>
+            <TabPane tab="网关链接" key="3">
+              {this.renderGwConnection()}
             </TabPane>
           </Tabs>}
         </div>
